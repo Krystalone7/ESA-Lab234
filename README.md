@@ -2,18 +2,18 @@ LR2
 
 Для удобства сделал миграции liquibase для создания таблиц и тестовых данных в них
 
-![img_6.png](img_6.png)
+![](images/img_6.png)
 
-![img.png](img.png)
+![](images/img.png)
 
 Написан контроллер для отображения шаблонов thymeleaf
 
-![img_1.png](img_1.png)
+![](images/img_1.png)
 
 создана форма для добавления продукта с выбором склада
 
 
-![img_2.png](img_2.png)
+![](images/img_2.png)
 
 Видим что продукт добавлен.
 
@@ -24,13 +24,16 @@ LR 3
 На скринах можно увидеть запрос на получения json и xml, а также вывод XSL в браузере
 
 xml
-![img_3.png](img_3.png)
+
+![](images/img_3.png)
 
 json
-![img_4.png](img_4.png)
+
+![](images/img_4.png)
 
 xslt
-![img_5.png](img_5.png)
+
+![](images/img_5.png)
 
 LR 4
 
@@ -39,4 +42,4 @@ LR 4
 
 вот пример письма при удалении продукта
 
-![img_7.png](img_7.png)
+![](images/img_7.png)
