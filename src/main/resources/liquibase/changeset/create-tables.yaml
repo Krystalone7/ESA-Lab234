@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: "artyom"
+      changes:
+        - createTable:
+            tableName: "warehouses"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: "PK_warehouse"
+                    nullable: false
+              - column:
+                  name: "name"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: "products"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: "PK_product"
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: "name"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "price"
+                  type: "decimal(10,2)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "warehouse_id"
+                  type: "bigint"
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            constraintName: "FK_product_warehouse"
+            baseTableName: "products"
+            baseColumnNames: "warehouse_id"
+            referencedTableName: "warehouses"
+            referencedColumnNames: "id"
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: "CASCADE"

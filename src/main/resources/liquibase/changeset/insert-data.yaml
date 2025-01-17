@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: "2"
+      author: "artyom"
+      changes:
+        - insert:
+            tableName: "warehouses"
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Main Warehouse
+
+        - insert:
+            tableName: "warehouses"
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: Secondary Warehouse
+
+        - insert:
+            tableName: "products"
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Product A
+              - column:
+                  name: price
+                  value: 10.99
+              - column:
+                  name: warehouse_id
+                  value: 1
+
+        - insert:
+            tableName: "products"
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: Product B
+              - column:
+                  name: price
+                  value: 8.99
+              - column:
+                  name: warehouse_id
+                  value: 1
+
+        - insert:
+            tableName: "products"
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: Product C
+              - column:
+                  name: price
+                  value: 5.99
+              - column:
+                  name: warehouse_id
+                  value: 2
