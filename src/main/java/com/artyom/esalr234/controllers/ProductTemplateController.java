@@ -42,7 +42,9 @@ public class ProductTemplateController {
 
     @PostMapping()
     public String addProduct(@ModelAttribute("product") Product product) {
-        productService.addProduct(product);
+        productService.saveProduct(product);
         return "redirect:/products";
     }
+
+
 }

@@ -10,8 +10,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jdk.jfr.ContentType;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +37,40 @@ public class ProductRestController {
         return productService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        productService.saveProduct(product);
+        return ResponseEntity.ok(product);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+        Optional<Product> productOptional = productService.findById(id);
+
+        if (productOptional.isPresent()) {
+            Product existingProduct = productOptional.get();
+            existingProduct.setName(updatedProduct.getName());
+            existingProduct.setPrice(updatedProduct.getPrice());
+            existingProduct.setWarehouse(updatedProduct.getWarehouse());
+            Product savedProduct = productService.updateProduct(existingProduct);
+            return ResponseEntity.ok(savedProduct); // 200 OK
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        Optional<Product> productOptional = productService.findById(id);
+
+        if (productOptional.isPresent()) {
+            productService.deleteById(id);
+            return ResponseEntity.noContent().build(); // Возврат 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // Возврат 404 Not Found, если продукт не найден
+        }
     }
 
     @GetMapping(value = "xml/{id}", produces = MediaType.APPLICATION_XML_VALUE)

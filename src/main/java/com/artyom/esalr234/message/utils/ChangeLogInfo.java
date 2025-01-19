@@ -13,4 +13,12 @@ import lombok.Setter;
 public class ChangeLogInfo {
     private ChangeLog changeLog;
     private String changeLogInfo;
+
+    public ChangeLog getChangeLog() {
+        return changeLog;
+    }
+
+    public String getChangeLogInfo() {
+        return changeLogInfo;
+    }
 }
